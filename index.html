@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SP2aqua - Coming Soon</title>
+    <meta name="description" content="SP2aqua - Advanced graphene water filtration technology. Coming soon.">
+    <style>
+        :root {
+            --primary-teal: #0d9488;
+            --primary-blue: #0ea5e9;
+            --accent-cyan: #22d3d1;
+            --text-light: #f1f5f9;
+            --text-muted: #94a3b8;
+            --bg-dark: #0c1929;
+            --gradient-primary: linear-gradient(135deg, #0d9488 0%, #0ea5e9 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Animated background */
+        .bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(13, 148, 136, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(14, 165, 233, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, 20px) scale(1.05); }
+        }
+
+        /* Water ripple effect */
+        .ripple {
+            position: absolute;
+            border: 1px solid rgba(34, 211, 209, 0.1);
+            border-radius: 50%;
+            animation: ripple 8s ease-out infinite;
+        }
+
+        .ripple:nth-child(1) { width: 400px; height: 400px; animation-delay: 0s; }
+        .ripple:nth-child(2) { width: 600px; height: 600px; animation-delay: 2s; }
+        .ripple:nth-child(3) { width: 800px; height: 800px; animation-delay: 4s; }
+
+        @keyframes ripple {
+            0% { transform: scale(0.5); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 700px;
+        }
+
+        /* Logo */
+        .logo-container {
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-svg {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 40px rgba(34, 211, 209, 0.3));
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Filtration capabilities */
+        .capabilities {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .capability-tag {
+            background: rgba(13, 148, 136, 0.1);
+            border: 1px solid rgba(34, 211, 209, 0.15);
+            color: var(--accent-cyan);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            opacity: 0.8;
+        }
+
+        /* Stealth mode badge */
+        .stealth-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            color: var(--text-muted);
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            margin-bottom: 3rem;
+            letter-spacing: 0.05em;
+        }
+
+        .stealth-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-teal);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        /* Contact */
+        .contact-section {
+            margin-top: 2rem;
+        }
+
+        .contact-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            opacity: 0.7;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(34, 211, 209, 0.3);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-email:hover {
+            background: rgba(34, 211, 209, 0.1);
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        .contact-email svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Footer */
+        .footer {
+            position: absolute;
+            bottom: 2rem;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            opacity: 0.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .logo-svg { width: 100px; height: 100px; }
+            .logo-text { font-size: 2rem; }
+            .tagline { font-size: 1rem; }
+            .capability-tag { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background effects -->
+    <div class="bg-animation"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+    <div class="ripple"></div>
+
+    <div class="container">
+        <!-- Logo -->
+        <div class="logo-container">
+            <svg class="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 5L90 27.5V72.5L50 95L10 72.5V27.5L50 5Z" stroke="url(#g1)" stroke-width="2.5" fill="rgba(12, 25, 41, 0.9)"/>
+                <path d="M50 20L75 35V65L50 80L25 65V35L50 20Z" stroke="url(#g2)" stroke-width="1.5" fill="none"/>
+                <path d="M50 35L60 41V53L50 59L40 53V41L50 35Z" stroke="#22d3d1" stroke-width="1.2" fill="none"/>
+                <path d="M35 44L45 50M55 50L65 44M50 59L50 70" stroke="#22d3d1" stroke-width="0.8"/>
+                <ellipse cx="50" cy="28" rx="4" ry="5" fill="url(#g1)"/>
+                <ellipse cx="35" cy="68" rx="3" ry="4" fill="url(#g2)"/>
+                <ellipse cx="65" cy="68" rx="3" ry="4" fill="url(#g2)"/>
+                <circle cx="10" cy="50" r="3" fill="#0d9488"/>
+                <circle cx="90" cy="50" r="3" fill="#0ea5e9"/>
+                <defs>
+                    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#0d9488"/>
+                        <stop offset="100%" stop-color="#0ea5e9"/>
+                    </linearGradient>
+                    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#22d3d1"/>
+                        <stop offset="100%" stop-color="#0ea5e9"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+            <div class="logo-text">SP2AQUA</div>
+        </div>
+
+        <!-- Tagline -->
+        <p class="tagline">Advanced water filtration technology.</p>
+
+        <!-- Stealth mode indicator -->
+        <div class="stealth-badge">COMING SOON</div>
+
+
+
+    </div>
+
+    <footer class="footer">
+        © 2025 SP2aqua
+    </footer>
+</body>
+</html>
